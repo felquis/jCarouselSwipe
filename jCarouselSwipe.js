@@ -32,17 +32,13 @@
 
         var $Slide = $(this.element);
 
-        alert(!!$Slide.data('jcarousel'));
-
     //  Verifica se é esta iniciado o jCarousel
         if (!$Slide.data('jcarousel')) return false;
-
 
     /*     Inicia os eventos touch
        ========================================================================== */
 
         var hammer = new Hammer($Slide.get(0));
-
 
         // DireÃ§Ã£o dos final do drag
             direction = {
