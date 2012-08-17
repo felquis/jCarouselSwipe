@@ -32,7 +32,7 @@
 
         var $Slide = $(this);
 
-        alert(!!$Slide.data('jcarousel'));
+        alert(!!$(this).data('jcarousel'));
 
     //  Verifica se é esta iniciado o jCarousel
         if (!$Slide.data('jcarousel')) return false;
