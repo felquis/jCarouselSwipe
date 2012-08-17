@@ -1,4 +1,5 @@
-#jCarouselSwipe.js
+#jCarouselSwipe.js v0.1
+Plugin that add touch controls for jCarousel.
 
 How to use
 ==========
@@ -10,15 +11,13 @@ $('#my-jcarousel').jcarousel().touch();
 
 Required Plugins:
 =================
-
 * https://github.com/jsor/jcarousel
 * http://eightmedia.github.com/hammer.js/
 * http://modernizr.com/ with touch check
 
-Credits
+Required plugins Credits
 =======
-
-jQuery, jCarousel, Modernizr :)
+jQuery, jCarousel, Modernizr and Hammer :)
 
 Author
 ======
