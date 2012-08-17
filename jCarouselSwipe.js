@@ -10,7 +10,7 @@
 
     var pluginName = 'touch',
         document = window.document,
-        defaults = {alert : 'oi'};
+        defaults = {};
 
     function Plugin( element, options ) {
         this.element = element;
@@ -25,11 +25,10 @@
 
     Plugin.prototype.init = function () {
 
-        alert('Inicia');
     // Testa se tem as dependências
         if (Hammer == undefined || Modernizr == undefined) return false;
 
-        alert('Passou');
+
         if (!Modernizr.touch) return false;
 
         var $Slide = $(this);
@@ -39,7 +38,6 @@
 
     /*     Inicia os eventos touch
        ========================================================================== */
-        alert('certo');
 
         var hammer = new Hammer($Slide.get(0));
 
