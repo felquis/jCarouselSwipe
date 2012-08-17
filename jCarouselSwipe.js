@@ -32,10 +32,10 @@
 
         var $Slide = $(this);
 
-        alert($Slide.attr('data-jcarousel'));
+        alert(!!$Slide.data('jcarousel'));
 
     //  Verifica se é esta iniciado o jCarousel
-        if ($Slide.attr('data-jcarousel') != true) return false;
+        if (!$Slide.data('jcarousel')) return false;
 
 
     /*     Inicia os eventos touch
