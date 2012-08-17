@@ -1,38 +1,20 @@
 /*
- *  Project: 
- *  Description: 
- *  Author: 
- *  License: 
+ *  Project: jCarouselSwipe.js
+ *  Description: Plugin that add touch controls for jCarousel.
+ *  Author: @felquis
+ *  License: MIT
+ *  GitHub : github.com/felquis/jCarouselSwipe
  */
 
-// the semi-colon before function invocation is a safety net against concatenated
-// scripts and/or other plugins which may not be closed properly.
 ;(function ( $, window, undefined ) {
-    
-    // undefined is used here as the undefined global variable in ECMAScript 3 is
-    // mutable (ie. it can be changed by someone else). undefined isn't really being
-    // passed in so we can ensure the value of it is truly undefined. In ES5, undefined
-    // can no longer be modified.
-    
-    // window is passed through as local variable rather than global
-    // as this (slightly) quickens the resolution process and can be more efficiently
-    // minified (especially when both are regularly referenced in your plugin).
 
-    // Create the defaults once
-    var pluginName = 'defaultPluginName',
+    var pluginName = 'touch',
         document = window.document,
-        defaults = {
-            propertyName: "value"
-        };
+        defaults = {};
 
-    // The actual plugin constructor
     function Plugin( element, options ) {
         this.element = element;
 
-        // jQuery has an extend method which merges the contents of two or
-        // more objects, storing the result in the first object. The first object
-        // is generally empty as we don't want to alter the default options for
-        // future instances of the plugin
         this.options = $.extend( {}, defaults, options) ;
         
         this._defaults = defaults;
@@ -42,13 +24,80 @@
     }
 
     Plugin.prototype.init = function () {
-        // Place initialization logic here
-        // You already have access to the DOM element and the options via the instance,
-        // e.g., this.element and this.options
+
+    // Testa se tem as dependências
+        if (Hammer == undefined || Modernizr == undefined) return false;
+
+        if (Modernizr.touch == undefined || Modernizr.touch == false) return false;
+
+        var $Slide = $(this);
+
+    //  Verifica se é esta iniciado o jCarousel
+        if ($Slide.attr('data-jcarousel') != true) return false;
+
+    /*     Inicia os eventos touch
+       ========================================================================== */
+        var hammer = new Hammer($Slide.get(0));
+
+        // DireÃ§Ã£o dos final do drag
+            direction = {
+                        left : function () {
+                            $Slide.jcarousel('scroll', '+=1');
+                        },
+                        right : function () {
+                            $Slide.jcarousel('scroll', '-=1');
+                        }
+                    },
+        // Valor de base para o inicio do drag
+            init = init = parseFloat($Slide.find('ul').css('left').replace('px','')),
+
+        // Guarda o valor do ultimo drag
+            oudGo = 0,
+
+        // Grava a direÃ§Ã£o do drag, e Ã© usada quando dipara ondragend        
+            goDirection = 'left';
+
+    /*     ondragstart grava o left inicial do Slide
+       ========================================================================== */
+            hammer.ondragstart = function () {
+                init = init = parseFloat($Slide.find('ul').css('left').replace('px',''));
+            }
+
+    /*     durante o drag ele movimenta o Slide
+       ========================================================================== */
+            hammer.ondrag = function (e) {
+                var go = e.distanceX*0.5,
+                    last = (init+(go));
+
+                // Verifica se o usuÃ¡rio nÃ£o alternou a direÃ§Ã£o do drag
+                    if (oudGo > go) {
+                        if (go < 900) {
+                            $Slide.find('ul').css('left', last);
+
+                        // DireÃ§Ã£o que esta o drag    
+                            goDirection = 'left';
+                        }
+                    } else if (oudGo < go) {
+                        if (go < 900) {
+                            $Slide.find('ul').css('left', last);
+
+                        // DireÃ§Ã£o que esta o drag
+                            goDirection = 'right';
+                        }
+                    }
+
+                // Grava a posiÃ§Ã£o do ultimo drag
+                    oudGo = go;
+            }
+
+    /*     ao terminar o drag, executa a mudanÃ§a de Slide
+       ========================================================================== */
+            hammer.ondragend = function (e) {
+                oudGo = 0;
+                direction[goDirection](e);
+            }
     };
 
-    // A really lightweight plugin wrapper around the constructor,
-    // preventing against multiple instantiations
     $.fn[pluginName] = function ( options ) {
         return this.each(function () {
             if (!$.data(this, 'plugin_' + pluginName)) {
@@ -56,5 +105,4 @@
             }
         });
     };
-
 }(jQuery, window));
