@@ -25,9 +25,11 @@
 
     Plugin.prototype.init = function () {
 
+        alert('Inicia');
     // Testa se tem as dependências
         if (Hammer == undefined || Modernizr == undefined) return false;
 
+        alert('Passou');
         if (Modernizr.touch == undefined || Modernizr.touch == false) return false;
 
         var $Slide = $(this);
@@ -37,9 +39,10 @@
 
     /*     Inicia os eventos touch
        ========================================================================== */
+        alert('certo');
+
         var hammer = new Hammer($Slide.get(0));
 
-        alert(this.options.alert);
 
         // DireÃ§Ã£o dos final do drag
             direction = {
