@@ -35,7 +35,7 @@
     //  Verifica se é esta iniciado o jCarousel
         if ($Slide.attr('data-jcarousel') != true) return false;
 
-        Window['teste_'+(new Date()).getTime()] = $Slide;
+        console.log($Slide.attr('data-jcarousel'), $Slide);
 
     /*     Inicia os eventos touch
        ========================================================================== */
