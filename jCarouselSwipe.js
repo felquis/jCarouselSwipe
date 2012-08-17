@@ -30,9 +30,9 @@
 
         if (!Modernizr.touch) return false;
 
-        var $Slide = $(this);
+        var $Slide = $(this.element);
 
-        alert(!!$(this).data('jcarousel'));
+        alert(!!$Slide.data('jcarousel'));
 
     //  Verifica se é esta iniciado o jCarousel
         if (!$Slide.data('jcarousel')) return false;
