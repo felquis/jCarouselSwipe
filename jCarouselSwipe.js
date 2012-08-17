@@ -10,7 +10,7 @@
 
     var pluginName = 'touch',
         document = window.document,
-        defaults = {};
+        defaults = {alert : 'oi'};
 
     function Plugin( element, options ) {
         this.element = element;
@@ -38,6 +38,8 @@
     /*     Inicia os eventos touch
        ========================================================================== */
         var hammer = new Hammer($Slide.get(0));
+
+        alert(this.options.alert);
 
         // DireÃ§Ã£o dos final do drag
             direction = {
