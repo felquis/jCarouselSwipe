@@ -30,7 +30,7 @@
         if (Hammer == undefined || Modernizr == undefined) return false;
 
         alert('Passou');
-        if (Modernizr.touch == undefined || Modernizr.touch == false) return false;
+        if (!Modernizr.touch) return false;
 
         var $Slide = $(this);
 
