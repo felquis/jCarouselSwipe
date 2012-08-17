@@ -15,8 +15,8 @@ Required Plugins:
 * http://eightmedia.github.com/hammer.js/
 * http://modernizr.com/ with touch check
 
-Required plugins Credits
-=======
+Required plugins' Credits and others
+====================================
 jQuery, jCarousel, Modernizr, Hammer and jQuery Boilerplate :)
 
 Author
