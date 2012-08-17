@@ -28,13 +28,14 @@
     // Testa se tem as dependências
         if (Hammer == undefined || Modernizr == undefined) return false;
 
-
         if (!Modernizr.touch) return false;
 
         var $Slide = $(this);
 
     //  Verifica se é esta iniciado o jCarousel
         if ($Slide.attr('data-jcarousel') != true) return false;
+
+        window['teste_'+(new Date()).getTime()] = $Slide;
 
     /*     Inicia os eventos touch
        ========================================================================== */
