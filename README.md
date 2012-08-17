@@ -17,7 +17,7 @@ Required Plugins:
 
 Required plugins Credits
 =======
-jQuery, jCarousel, Modernizr and Hammer :)
+jQuery, jCarousel, Modernizr, Hammer and jQuery Boilerplate :)
 
 Author
 ======
